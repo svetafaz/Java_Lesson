@@ -51,7 +51,7 @@ public class Main {
             System.out.println("Привет! " + a);
             a++;
         }
-        while (a<12); // < > == != >= <= .equels()  return true/false
+        while (a<12); // < > == != >= <= .equels() в условие всегда будет возвращено Boolean - true/false
         /* Выполнение блока do
          Проверяем условие для while
          a<12
@@ -92,8 +92,22 @@ public class Main {
         for (int i = 0; i <= 4; i++) {
 
             // пример того, как мы можем влиять на i во время каждой итерации (не рекомендуется!)
-            System.out.println(today + " : " + i);
-            int i1 = i == 3 ? i++ : i--;
+
+            switch (today) {
+                case "Cуббота":
+                    System.out.println("Выходной: " + today + " : " + i);
+                    break;
+                case "Среда":
+                    System.out.println("Рабочий день: " + today + " : " + i);
+                    break;
+                case "Пятница":
+                    System.out.println("Последний рабочий день: " + today + " : " + i);
+                    break;
+                default:
+                    System.out.println(today + " : " + i);
+            }
+
+            int i1 = i == 3 ? i++ : i--;  // пример тернарной операции, которая всегда возвращает значение
 
             System.out.println("i1: "+ i1);
 
