@@ -1,2 +1,2 @@
 ## Примеры кода из уроков
-Как работает Scanner, if...else, while, for, do...while, switch...case, массивы
+Как работают Scanner, if...else, while, for, do...while, switch...case, массивы
