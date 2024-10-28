@@ -74,5 +74,7 @@ public class LessonArray {
 
         int[][] newArray = new int[10][10];
 
+
+
     }
 }
