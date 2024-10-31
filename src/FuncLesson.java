@@ -7,6 +7,11 @@ public class FuncLesson {
         char[] arrayChars = new char[] {'x','a', 'b', 'r', 100, 'г', 'ю', 'X', 'X', '#', '&', '|', '\"', '\\'};
         int[] arrayInt = new int[10];
 
+        int base_X = 5;
+        int base_x = returnZero(true);
+
+        int base_XSum = base_X + base_x + 5 + returnZero( false);
+
         // вызываем метод, который мы создали, он нам ничего не возвращает, только получает на вход переменную требуемого
         sorted(arrayChars);
         // перегрузка метода - нам важен только какой тип данных был передан внутри, таким образом Java найдёт метод с такой же сигнатурой и использует его
@@ -92,6 +97,13 @@ public class FuncLesson {
         System.out.println("Ответ задачи " + text + " результат вычислений " + def );
     }
 
+    static int returnZero(boolean checkValue) {
+        if (!checkValue) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
 
 
 }
