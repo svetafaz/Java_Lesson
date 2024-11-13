@@ -81,9 +81,6 @@ public class Main {
 
     }
 
-
-
-
     /*
     ---Объяснение---
     Этот вид поиска использует подход «Разделяй и властвуй»,
@@ -130,9 +127,6 @@ public class Main {
         }
         return -1;
     }
-
-
-
 
     public static int recBinarySearch(int[] arr, int firstIndex, int lastIndex, int elementToSearch) {
         int middle = (firstIndex + lastIndex) / 2;
