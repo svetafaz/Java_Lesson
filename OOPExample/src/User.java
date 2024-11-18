@@ -1,4 +1,7 @@
 public class User {
+    // добавили getters и setters
+    // так как мы не хотим, чтобы после инициализации класса значения экземпляров были не измены,
+    // то мы задаём конструктор класса и закомментировали все setters.
     private int id;
     private String username;
     private int height;

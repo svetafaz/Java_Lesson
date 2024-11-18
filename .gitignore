@@ -3,6 +3,7 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 **/.idea/
+Java_Lesson.iml
 
 ### Eclipse ###
 .apt_generated
