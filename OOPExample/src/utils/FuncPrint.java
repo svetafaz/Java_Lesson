@@ -1,11 +1,15 @@
+package utils;
+
+import model.User;
+
 public class FuncPrint {
-    void print (User mes) {
+    public void print (User mes) {
         System.out.println(mes);
     }
-    void print (String mes) {
+    public void print (String mes) {
         System.out.println(mes);
     }
-    void print (int mes) {
+    public void print(int mes) {
         System.out.println(mes);
     }
 }

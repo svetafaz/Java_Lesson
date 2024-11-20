@@ -1,3 +1,7 @@
+package model;
+
+import utils.FuncPrint;
+
 public class User {
     // добавили getters и setters
     // так как мы не хотим, чтобы после инициализации класса значения экземпляров были не измены,
@@ -9,16 +13,37 @@ public class User {
 
     private double check;
 
-    void grow(int age) {
+    public void grow(int age, FuncPrint print) {
         this.age+=age;
         this.height = this.age * age;
+
+        print.print(age);
     }
 
-    public User(int id, String username, int height, int age) {
+    {
+        id = 0;
+        username = "Admin";
+        height = 100;
+        age = 100;
+    }
+
+    public User(int id, int height, int age) {
+        System.out.println("Работа инициализатора: " + this.height);
         this.id = id;
-        this.username = username;
+
         this.height = height;
         this.age = age;
+        System.out.println("Работа конструктора: " + this.height);
+    }
+
+    public User(String username) {
+        this.id = 100;
+        this.username = username;
+        this.height = 10;
+        this.age = this.height;
+    }
+
+    public User() {
     }
 
     public int getId() {
