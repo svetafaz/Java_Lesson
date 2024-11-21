@@ -6,10 +6,12 @@ import utils.FuncPrint;
 public class Main {
     public static void main(String[] args) {
 
+        FuncPrint system = new FuncPrint();
+        Class1 class1 = new Class1();
+
         User person;
 
         person = new User();
-
 
         User user1 = new User(
                 1,
@@ -23,8 +25,6 @@ public class Main {
                 64,
                 8
                 );
-        FuncPrint system = new FuncPrint();
-        Class1 class1 = new Class1();
 
         system.print(class1.getDescription());
 
@@ -63,17 +63,19 @@ public class Main {
     }
 
 }
-
+// defaulted
 class Class1 {
 
     private String description;
     private int x;
 
+    // начало инициализаторы
     {
         description = "Я описание main.Class1";
         x = 5;
         x *= 5;
     }
+    // конец инициализатора
 
     public Class1() {
 
