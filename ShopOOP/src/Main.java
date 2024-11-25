@@ -20,10 +20,8 @@ public class Main {
                 new Product("chair", 1, 10),
                 new Product("bookshelf", 2, 3)
         };
-        // Реализовать переезд на новый склад/расширение склада (написать решение для расширения массива)
-//        Product[] newStorаge = storage.addNewStorage();
 
-        //реализовать пополнение товаров на складе.
+        //TODO: Product[] newStorаge = storage.addNewStorage();
 
         Product table = new Product("table", 0, 5);
         Product chair = new Product("chair", 1, 10);
@@ -41,6 +39,8 @@ public class Main {
 
         storage.getProducts(productsThree);
         storage.buyProducts(productsThree, table);
+
+        // TODO: подумать над реализацией static методов
 
     }
 
