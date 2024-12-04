@@ -1,5 +1,4 @@
-import model.Product;
-import model.Storage;
+import model.*;
 
 import java.util.Arrays;
 
@@ -41,6 +40,71 @@ public class Main {
 
         storage.getProducts(productsThree);
         storage.buyProducts(productsThree, table);
+
+        Employee employee1 = new Employee(
+                1,
+                "Russia",
+                24,
+                1L
+        );
+        Employee employee2 = new Employee(
+                2,
+                "Russia",
+                30,
+                2L
+        );
+
+        System.out.println(employee1.getEmployeeCard());
+        System.out.println(employee2.getEmployeeCard());
+
+
+        Buyer buyer1 = new Buyer(
+                1,
+                "Russia",
+                -1,
+                "Вася",
+                "Kazan"
+        );
+
+        Buyer buyer2 = new Buyer(
+                1,
+                "French",
+                -1,
+                "Василиса",
+                "Paris"
+        );
+
+        System.out.println(buyer1.getAge());
+
+        Employee employee3 = new Employee(
+                3,
+                "Russia",
+                -30,
+                3L
+        );
+        System.out.println(employee3.getAge());
+
+
+        User buyer3 = new Buyer(
+                1,
+                "French",
+                -1,
+                "Василиса",
+                "Paris"
+        );
+
+        System.out.println(buyer3.getAge());
+        System.out.println(buyer3.getUsername());
+
+        User child1 = new Child(
+                1,
+                "French",
+                -1,
+                "Марина",
+                "Paris"
+        );
+
+        System.out.println(child1.getAge());
 
         // TODO: подумать над реализацией static методов
 

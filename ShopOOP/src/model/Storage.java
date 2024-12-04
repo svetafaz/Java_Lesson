@@ -2,6 +2,9 @@ package model;
 
 public class Storage {
 
+    public Storage() {
+
+    }
     // TODO: реализовать во всех методах проверку того, что position не превышает размерности массива
     // TODO: написать try()...catch(), чтобы программа продолжала работу
 
