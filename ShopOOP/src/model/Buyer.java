@@ -18,6 +18,7 @@ public class Buyer extends User {
     }
 
     public Order buyProduct(String cardNumber) {
+        // TODO
         return new Order(this.address);
     }
 
