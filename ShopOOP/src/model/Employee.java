@@ -1,5 +1,8 @@
 package model;
 
+import main.Main;
+
+
 public class Employee extends User {
 
     private long tabNumber;
@@ -9,7 +12,9 @@ public class Employee extends User {
         this.tabNumber = tabNumber;
     }
 
-    public String getEmployeeCard() {
+    @Override
+    public String getPass() {
+        Main.logger.log();
         return "\nUsername: " + this.getUsername()
                 + "\nCountry: " + this.getCountry()
                 + "\nAge: " + this.getAge()

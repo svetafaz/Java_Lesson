@@ -9,4 +9,10 @@ public class Child extends Buyer{
     public int getAge() {
         return 5;
     }
+
+    @Override
+    public String getPass() {
+        return super.getPass();
+    }
+
 }

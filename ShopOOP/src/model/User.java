@@ -1,7 +1,7 @@
 package model;
 
 
-public class User {
+public abstract class User {
 
     private int id;
     private String username;
@@ -38,6 +38,8 @@ public class User {
     public String getCountry() {
         return country;
     }
+
+    public abstract String getPass();
 
 //    public void setId(int id) {
 //        this.id = id;
