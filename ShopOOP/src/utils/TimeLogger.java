@@ -3,7 +3,7 @@ package utils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class TimeLogger extends Logger{
+public class TimeLogger implements Logger{
     private DateTimeFormatter formatter;
     public TimeLogger() {
         this.formatter = DateTimeFormatter.ofPattern("HH:mm:ss");

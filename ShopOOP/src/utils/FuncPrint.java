@@ -4,7 +4,7 @@ import model.User;
 
 import static java.lang.System.currentTimeMillis;
 
-public class FuncPrint extends Logger {
+public class FuncPrint implements Logger {
 
     public static void print (User mes) {
         System.out.println(mes);

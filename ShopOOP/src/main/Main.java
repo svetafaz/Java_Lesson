@@ -1,7 +1,11 @@
 package main;
 
+import service.StorageNew;
+import service.impl.StorageImpl;
+import service.impl.StorageNewImpl;
 import utils.Logger;
 import model.*;
+import service.Storage;
 
 import utils.FuncPrint;
 import utils.TimeLogger;
@@ -12,11 +16,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        logger = new TimeLogger();
+        logger = new FuncPrint();
 //        System.out.println("Привет магазин!");
 //
 //        System.out.println("Начало дня: " + Product.counterProducts);
-        Storage storage = new Storage();
+
+        Storage storage = new StorageNewImpl();
+
+        StorageNew storage1 = new StorageNewImpl();
 
         Product[] productsOne = new Product[3];
 //        System.out.println(Arrays.toString(productsOne));
@@ -39,15 +46,15 @@ public class Main {
 
         Product[] productsThree = new Product[3];
 
-        storage.addProducts(productsThree, table);
-        storage.addProducts(productsThree, chair);
-        storage.addProducts(productsThree, bookshelf);
+        storage.addProduct(productsThree, table);
+        storage.addProduct(productsThree, chair);
+        storage.addProduct(productsThree, bookshelf);
 
 //        System.out.println(Arrays.toString(productsOne));
 //        System.out.println(Arrays.toString(productsTwo));
 //        System.out.println(Arrays.toString(productsThree));
 
-//        storage.getProducts(productsThree);
+        storage.getProducts(productsThree);
         storage.buyProducts(productsThree, table);
 
         Employee employee1 = new Employee(
@@ -142,9 +149,15 @@ public class Main {
 //        FuncPrint.print("arrayUsers[7]: " + arrayUsers[7].getAge());
 
 
-        for (User user : arrayUsers) {
-            FuncPrint.print(user.getPass());
-        }
+//        for (User user : arrayUsers) {
+//            FuncPrint.print(user.getPass());
+//        }
+
+        FuncPrint.print("arrayUsers[7]: " + arrayUsers[7].getPass());
+
+        FuncPrint.print("arrayUsers[7]: " + ((Student)arrayUsers[7]).getEducation());
+
+
 
     }
 
