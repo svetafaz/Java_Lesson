@@ -1,5 +1,6 @@
 package utils;
 
+import example.Book;
 import model.User;
 
 import static java.lang.System.currentTimeMillis;
@@ -13,6 +14,9 @@ public class FuncPrint implements Logger {
         System.out.println(mes);
     }
     public static void print (int mes) {
+        System.out.println(mes);
+    }
+    public static void print (Book mes) {
         System.out.println(mes);
     }
 

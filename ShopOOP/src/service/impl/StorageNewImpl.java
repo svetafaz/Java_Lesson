@@ -3,20 +3,20 @@ package service.impl;
 import model.Product;
 import service.StorageNew;
 
-public class StorageNewImpl extends StorageNew {
+public class StorageNewImpl implements StorageNew {
     @Override
     public void addProduct(Product[] products, Product product) {
 
     }
 
     @Override
-    public void getProducts(Product[] products) {
+    public void getAllProducts(Product[] products) {
         getAllProducts();
     }
 
     @Override
-    public void buyProducts(Product[] products, Product product) {
-
+    public int buyProducts(Product[] products, Product product) {
+        return 1;
     }
 
     @Override

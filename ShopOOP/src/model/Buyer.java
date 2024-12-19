@@ -1,6 +1,7 @@
 package model;
 
 import main.Main;
+import service.Storage;
 
 public class Buyer extends User {
     private String cardNumber;
@@ -28,12 +29,21 @@ public class Buyer extends User {
                 + "\nAddress: " +this.getAddress();
     }
 
-    public Order buyProduct(String cardNumber) {
+    public Order buyProduct(String cardNumber, Product productForBuy, Product[] products, Storage storage) {
         // TODO
-        return new Order(this.address);
+//        switch (storage.buyProducts(products, productForBuy)) {
+//            case 0:
+//                System.out.println("Покупка прошла успешно");
+//            case 1:
+//                System.out.println("Продукт на складе закончился");
+//        }
+
+        return new Order(getAddress(), this);
     }
 
     public String getAddress() {
         return address;
     }
+
+
 }

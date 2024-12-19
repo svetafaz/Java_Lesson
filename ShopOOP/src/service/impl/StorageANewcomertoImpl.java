@@ -3,9 +3,8 @@ package service.impl;
 import main.Main;
 import model.Product;
 import service.Storage;
-import service.StorageNew;
 
-public class StorageImpl implements Storage {
+public class StorageANewcomertoImpl implements Storage {
     @Override
     public void addProduct(Product[] products, Product product) {
         products[product.getPosition()] = product;
@@ -28,25 +27,22 @@ public class StorageImpl implements Storage {
             }
             return Main.SUCCESSFULLY;
         }
-
     }
 
-    // ранее addNewStorage()
     @Override
     public Product[] storageExpansion(Product[] products, int extensionValue) {
-
-        return new Product[products.length + extensionValue];
-
-        // TODO:
+        // вычисляем длинну массива
+        int oldLength = products.length;
+        // создаем новый массив прибавляя к старому 10
+        Product[] productsNew = new Product[oldLength + extensionValue];
+        // переносим старые значения в новый массив
+        System.arraycopy(products, 0, productsNew, 0, oldLength);
+        // заменяем старый массив новым
+        return productsNew;
     }
 
     @Override
     public void deliveryProducts(Product[] storage, Product[] deliveryProducts) {
-        // TODO:
-        //  реализовать пополнение товаров на складе от поставщика.
-    }
 
-    public Storage returnNewStorage(Storage storage) {
-        return storage;
     }
 }

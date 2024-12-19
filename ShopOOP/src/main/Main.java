@@ -1,42 +1,31 @@
 package main;
 
-import service.StorageNew;
+import service.impl.StorageANewcomertoImpl;
 import service.impl.StorageImpl;
-import service.impl.StorageNewImpl;
+import service.impl.Storageconstant1neBImpl;
 import utils.Logger;
 import model.*;
 import service.Storage;
 
-import utils.FuncPrint;
 import utils.TimeLogger;
+
+import java.util.Arrays;
 
 public class Main {
 
     public static Logger logger;
+    public final static int SUCCESSFULLY = 0;
+    public final static int PRODUCT_IS_OUT_OF_STOCK = 1;
+    public final static int ERROR = 2;
 
     public static void main(String[] args) {
 
-        logger = new FuncPrint();
-//        System.out.println("Привет магазин!");
-//
-//        System.out.println("Начало дня: " + Product.counterProducts);
+        logger = new TimeLogger();
+        System.out.println("Привет магазин!");
 
-        Storage storage = new StorageNewImpl();
+        System.out.println("Начало дня: " + Product.counterProducts);
 
-        StorageNew storage1 = new StorageNewImpl();
-
-        Product[] productsOne = new Product[3];
-//        System.out.println(Arrays.toString(productsOne));
-
-        productsOne[0] = new Product("table", 0, 5);
-        productsOne[1] = new Product("chair", 1, 10);
-        productsOne[2] = new Product("bookshelf", 2, 3);
-
-        Product[] productsTwo = {
-                new Product("table", 0, 5),
-                new Product("chair", 1, 10),
-                new Product("bookshelf", 2, 3)
-        };
+        Storage storage = new Storageconstant1neBImpl();
 
         //TODO: Product[] newStorаge = storage.addNewStorage();
 
@@ -44,120 +33,176 @@ public class Main {
         Product chair = new Product("chair", 1, 10);
         Product bookshelf = new Product("bookshelf", 2, 3);
 
-        Product[] productsThree = new Product[3];
+        Product[] products = new Product[3];
 
-        storage.addProduct(productsThree, table);
-        storage.addProduct(productsThree, chair);
-        storage.addProduct(productsThree, bookshelf);
+        storage.addProduct(products, table);
+        storage.addProduct(products, chair);
+        storage.addProduct(products, bookshelf);
 
-//        System.out.println(Arrays.toString(productsOne));
-//        System.out.println(Arrays.toString(productsTwo));
-//        System.out.println(Arrays.toString(productsThree));
+        int countForBuy = 2;
+        Product tableForBuy = new Product(table.getName(), table.getPosition(), countForBuy);
 
-        storage.getProducts(productsThree);
-        storage.buyProducts(productsThree, table);
+        storage.getAllProducts(products);
 
-        Employee employee1 = new Employee(
-                1,
-                "Russia",
-                24,
-                1L
-        );
+        switch (storage.buyProducts(products, tableForBuy)) {
+            case SUCCESSFULLY:
+                System.out.println("\nПокупка прошла успешно");
+                break;
+            case PRODUCT_IS_OUT_OF_STOCK:
+                System.out.println("\nПродукт на складе закончился");
+                break;
+            case ERROR:
+                System.out.println("\nОшибка работы программы!");
+                break;
+        }
 
-        Employee employee2 = new Employee(
-                2,
-                "Russia",
-                30,
-                2L
-        );
+        System.out.println("\n");
+        storage.getAllProducts(products);
+
+        System.out.println("\n");
+        System.out.println(Arrays.toString(products));
+
+        products = storage.storageExpansion(products, 10);
+
+        System.out.println("\n");
+        System.out.println(Arrays.toString(products));
+
+        Product testick = new Product("testick", 10, 3);
+        Product testick2 = new Product("testick2", 31, 31);
+
+        System.out.println("\n Проверка до testick");
+        storage.getAllProducts(products);
+
+        storage.addProduct(products, testick);
+
+        System.out.println("\n Проверка после");
+        storage.getAllProducts(products);
+
+        storage.addProduct(products, testick2);
+
+        System.out.println("\n Проверка работы программы после не правильной позиции");
+        System.out.println(Arrays.toString(products));
+
+
+
+
+
+//        Employee employee1 = new Employee(
+//                1,
+//                "Russia",
+//                24,
+//                1L
+//        );
+//
+//        Employee employee2 = new Employee(
+//                2,
+//                "Russia",
+//                30,
+//                2L
+//        );
 
 //        System.out.println(employee1.getEmployeeCard());
 //        System.out.println(employee2.getEmployeeCard());
 
 
-        Buyer buyer1 = new Buyer(
-                1,
-                "Russia",
-                -1,
-                "Вася",
-                "Kazan"
-        );
+//        Buyer buyer1 = new Buyer(
+//                1,
+//                "Russia",
+//                -1,
+//                "Вася",
+//                "Kazan"
+//        );
+//
+//        Buyer buyer2 = new Buyer(
+//                1,
+//                "French",
+//                -1,
+//                "Василиса",
+//                "Paris"
+//        );
+//
 
-        Buyer buyer2 = new Buyer(
-                1,
-                "French",
-                -1,
-                "Василиса",
-                "Paris"
-        );
+
+
+
 
 //        System.out.println(buyer1.getAge());
 
-        Employee employee3 = new Employee(
-                3,
-                "Russia",
-                -30,
-                3L
-        );
+//        Employee employee3 = new Employee(
+//                3,
+//                "Russia",
+//                -30,
+//                3L
+//        );
 //        System.out.println(employee3.getAge());
 
-
-        User buyer3 = new Buyer(
-                1,
-                "French",
-                -1,
-                "Вадим",
-                "Paris"
-        );
+//
+//        User buyer3 = new Buyer(
+//                1,
+//                "French",
+//                -1,
+//                "Вадим",
+//                "Paris"
+//        );
 
 //        System.out.println(buyer3.getAge());
 //        System.out.println(buyer3.getUsername());
 
-        User child1 = new Child(
-                1,
-                "French",
-                -1,
-                "Марина",
-                "Paris"
-        );
+//        User child1 = new Child(
+//                1,
+//                "French",
+//                -1,
+//                "Марина",
+//                "Paris"
+//        );
 
 //        System.out.println(child1.getAge());
 
-        Student student1 = new Student(
-                1,
-                "Russia",
-                8,
-                "Ваня",
-                "Школа 1"
-        );
+//        Student student1 = new Student(
+//                1,
+//                "Russia",
+//                8,
+//                "Ваня",
+//                "Школа 1"
+//        );
 
 //        System.out.println("Student: " + student1.getAge());
 
-        User[] arrayUsers = new User[]{
-                employee1,
-                employee2,
-                employee3,
-                buyer1,
-                buyer2,
-                buyer3,
-                child1,
-                student1
-        };
+//        User[] arrayUsers = new User[]{
+//                employee1,
+//                employee2,
+//                employee3,
+//                buyer1,
+//                buyer2,
+//                buyer3,
+//                child1,
+//                student1
+//        };
 
 //        FuncPrint.print("arrayUsers[0]: " + arrayUsers[0].getAge());
 //        FuncPrint.print("arrayUsers[6]: " + arrayUsers[6].getAge());
 //        FuncPrint.print("arrayUsers[7]: " + arrayUsers[7].getAge());
 
-
 //        for (User user : arrayUsers) {
 //            FuncPrint.print(user.getPass());
 //        }
+//
+//        FuncPrint.print("arrayUsers[7]: " + arrayUsers[7].getPass());
+//
+//        FuncPrint.print("arrayUsers[7]: " + ((Student)arrayUsers[7]).getEducation());
 
-        FuncPrint.print("arrayUsers[7]: " + arrayUsers[7].getPass());
-
-        FuncPrint.print("arrayUsers[7]: " + ((Student)arrayUsers[7]).getEducation());
-
-
+//        Book book = new Book("Java. Complete Reference", "H. Shildt");
+//
+//        Printable journal = new Journal("Foreign Policy");
+//
+//        Printable[] printables = new Printable[] {
+//                book,
+//                journal
+//        };
+//
+//        for (Printable prints: printables) {
+//            prints.print();
+//        }
 
     }
 
