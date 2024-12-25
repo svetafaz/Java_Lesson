@@ -1,7 +1,6 @@
 package main;
 
 import service.impl.StorageANewcomertoImpl;
-import service.impl.StorageImpl;
 import service.impl.Storageconstant1neBImpl;
 import utils.Logger;
 import model.*;
@@ -39,22 +38,19 @@ public class Main {
         storage.addProduct(products, chair);
         storage.addProduct(products, bookshelf);
 
-        int countForBuy = 2;
-        Product tableForBuy = new Product(table.getName(), table.getPosition(), countForBuy);
+        Product test_table = new Product(table.getName(), table.getPosition(), 3);
+        Product test_table_null = new Product(table.getName(), 4, 3);
+        Product test_table_PRODUCT_IS_OUT_OF_STOCK = new Product(table.getName(), -2, 4);
+        Product test_bookshelf_PRODUCT_IS_OUT_OF_STOCK = new Product(bookshelf.getName(), table.getPosition(), 1);
 
         storage.getAllProducts(products);
 
-        switch (storage.buyProducts(products, tableForBuy)) {
-            case SUCCESSFULLY:
-                System.out.println("\nПокупка прошла успешно");
-                break;
-            case PRODUCT_IS_OUT_OF_STOCK:
-                System.out.println("\nПродукт на складе закончился");
-                break;
-            case ERROR:
-                System.out.println("\nОшибка работы программы!");
-                break;
-        }
+        check_buy(products, test_table, storage);
+        storage.getAllProducts(products);
+        check_buy(products, test_table_null, storage);
+        storage.getAllProducts(products);
+        check_buy(products, test_table_PRODUCT_IS_OUT_OF_STOCK, storage);
+        storage.getAllProducts(products);
 
         System.out.println("\n");
         storage.getAllProducts(products);
@@ -82,6 +78,9 @@ public class Main {
 
         System.out.println("\n Проверка работы программы после не правильной позиции");
         System.out.println(Arrays.toString(products));
+
+
+
 
 
 
@@ -204,6 +203,20 @@ public class Main {
 //            prints.print();
 //        }
 
+    }
+
+    static void check_buy(Product[] products, Product product, Storage storage) {
+        switch (storage.buyProducts(products, product)) {
+            case SUCCESSFULLY:
+                System.out.println("\nПокупка прошла успешно");
+                break;
+            case PRODUCT_IS_OUT_OF_STOCK:
+                System.out.println("\nПродукт на складе закончился");
+                break;
+            case ERROR:
+                System.out.println("\nОшибка работы программы!");
+                break;
+        }
     }
 
 }

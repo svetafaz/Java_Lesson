@@ -14,7 +14,7 @@ public class Storageconstant1neBImpl implements Storage {
             }
             products[position] = product;
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage() + " в addProduct");
         }
     }
 
@@ -31,10 +31,10 @@ public class Storageconstant1neBImpl implements Storage {
     public int buyProducts(Product[] products, Product product) {
         try {
             int position = product.getPosition();
-            if (position < 0 || position >= products.length || products[position] == null) {
+            if (position < 0 || position >= products.length || products[position] == null || products[position].getName().equals(product.getName())) {
                 throw new ArrayIndexOutOfBoundsException("Position продукта вне допустимого диапазона или продукт отсутствует!");
             }
-            if (product.getCount() <= 0) {
+            if (products[position].getCount() - product.getCount() < 0 || product.getCount() <= 0) {
                 return Main.PRODUCT_IS_OUT_OF_STOCK;
             } else {
                 for (int i = 1; i <= product.getCount(); i++) {
@@ -43,7 +43,7 @@ public class Storageconstant1neBImpl implements Storage {
                 return Main.SUCCESSFULLY;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            // TODO: достигнуть данного поведения (как вариант вставить код из 47 строки вместо 35, так как у нас предусмотрена обработка ошибок)
+            System.err.println("Error: " + e.getMessage() + " в buyProduct");
             return Main.ERROR;
         }
 
