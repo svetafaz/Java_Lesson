@@ -1,9 +1,13 @@
 package service.impl;
 
+import enums.EnumStatusCode;
 import main.Main;
 import model.Product;
 import service.Storage;
 import service.StorageNew;
+
+import static enums.EnumStatusCode.PRODUCT_IS_OUT_OF_STOCK;
+import static enums.EnumStatusCode.SUCCESSFULLY;
 
 public class StorageImpl implements Storage {
     @Override
@@ -19,14 +23,14 @@ public class StorageImpl implements Storage {
     }
 
     @Override
-    public int buyProducts(Product[] products, Product product) {
+    public EnumStatusCode buyProducts(Product[] products, Product product) {
         if (product.getCount() <= 0) {
-            return Main.PRODUCT_IS_OUT_OF_STOCK;
+            return PRODUCT_IS_OUT_OF_STOCK;
         } else {
             for (int i = 1; i <= product.getCount(); i++) {
                 products[product.getPosition()].removeOne();
             }
-            return Main.SUCCESSFULLY;
+            return SUCCESSFULLY;
         }
 
     }

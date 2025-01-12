@@ -1,5 +1,6 @@
 package service;
 
+import enums.EnumStatusCode;
 import model.Product;
 
 public interface Storage {
@@ -8,7 +9,7 @@ public interface Storage {
 
     void getAllProducts(Product[] products);
 
-    int buyProducts(Product[] products, Product product);
+    EnumStatusCode buyProducts(Product[] products, Product product);
 
     Product[] storageExpansion(Product[] products, int extensionValue);
 

@@ -1,5 +1,6 @@
 package service.impl;
 
+import enums.EnumStatusCode;
 import model.Product;
 import service.StorageNew;
 
@@ -15,8 +16,8 @@ public class StorageNewImpl implements StorageNew {
     }
 
     @Override
-    public int buyProducts(Product[] products, Product product) {
-        return 1;
+    public EnumStatusCode buyProducts(Product[] products, Product product) {
+        return EnumStatusCode.SUCCESSFULLY;
     }
 
     @Override

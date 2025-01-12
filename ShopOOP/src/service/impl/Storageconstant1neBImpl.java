@@ -1,8 +1,11 @@
 package service.impl;
 
+import enums.EnumStatusCode;
 import main.Main;
 import model.Product;
 import service.Storage;
+
+import static enums.EnumStatusCode.*;
 
 public class Storageconstant1neBImpl implements Storage {
     @Override
@@ -28,23 +31,23 @@ public class Storageconstant1neBImpl implements Storage {
     }
 
     @Override
-    public int buyProducts(Product[] products, Product product) {
+    public EnumStatusCode buyProducts(Product[] products, Product product) {
         try {
             int position = product.getPosition();
             if (position < 0 || position >= products.length || products[position] == null || products[position].getName().equals(product.getName())) {
                 throw new ArrayIndexOutOfBoundsException("Position продукта вне допустимого диапазона или продукт отсутствует!");
             }
             if (products[position].getCount() - product.getCount() < 0 || product.getCount() <= 0) {
-                return Main.PRODUCT_IS_OUT_OF_STOCK;
+                return PRODUCT_IS_OUT_OF_STOCK;
             } else {
                 for (int i = 1; i <= product.getCount(); i++) {
                     products[position].removeOne();
                 }
-                return Main.SUCCESSFULLY;
+                return SUCCESSFULLY;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.err.println("Error: " + e.getMessage() + " в buyProduct");
-            return Main.ERROR;
+            return ERROR_CODE;
         }
 
     }

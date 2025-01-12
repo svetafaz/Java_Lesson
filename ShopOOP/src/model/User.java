@@ -41,7 +41,12 @@ public abstract class User {
 
     public abstract String getPass();
 
-//    public void setId(int id) {
+    @Override
+    public String toString() {
+        return getClass().getName() + " " + getUsername() + " " + getCountry() + " " + getAge() + " " + getId();
+    }
+
+    //    public void setId(int id) {
 //        this.id = id;
 //    }
 //

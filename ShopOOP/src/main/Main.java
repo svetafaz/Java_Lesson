@@ -1,5 +1,7 @@
 package main;
 
+import enums.EnumStatusCode;
+import enums.ShopEnum;
 import service.impl.StorageANewcomertoImpl;
 import service.impl.Storageconstant1neBImpl;
 import utils.Logger;
@@ -10,12 +12,11 @@ import utils.TimeLogger;
 
 import java.util.Arrays;
 
+import static enums.EnumStatusCode.*;
+
 public class Main {
 
     public static Logger logger;
-    public final static int SUCCESSFULLY = 0;
-    public final static int PRODUCT_IS_OUT_OF_STOCK = 1;
-    public final static int ERROR = 2;
 
     public static void main(String[] args) {
 
@@ -74,16 +75,20 @@ public class Main {
         System.out.println("\n Проверка после");
         storage.getAllProducts(products);
 
-        storage.addProduct(products, testick2);
+        ShopEnum.BUY_PRODUCT.action(products, testick2, storage);
 
         System.out.println("\n Проверка работы программы после не правильной позиции");
         System.out.println(Arrays.toString(products));
 
+        Buyer buyer1 = new Buyer(
+                1,
+                "Russia",
+                -1,
+                "Вася",
+                "Kazan"
+        );
 
-
-
-
-
+        System.out.println(buyer1);
 
 
 //        Employee employee1 = new Employee(
@@ -120,9 +125,6 @@ public class Main {
 //                "Paris"
 //        );
 //
-
-
-
 
 
 //        System.out.println(buyer1.getAge());
@@ -208,13 +210,13 @@ public class Main {
     static void check_buy(Product[] products, Product product, Storage storage) {
         switch (storage.buyProducts(products, product)) {
             case SUCCESSFULLY:
-                System.out.println("\nПокупка прошла успешно");
+                System.out.println(SUCCESSFULLY.getTitle());
                 break;
             case PRODUCT_IS_OUT_OF_STOCK:
-                System.out.println("\nПродукт на складе закончился");
+                System.out.println(PRODUCT_IS_OUT_OF_STOCK.getTitle());
                 break;
-            case ERROR:
-                System.out.println("\nОшибка работы программы!");
+            case ERROR_CODE:
+                System.out.println(ERROR_CODE.getTitle());
                 break;
         }
     }
