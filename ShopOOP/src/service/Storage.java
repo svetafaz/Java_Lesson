@@ -3,7 +3,9 @@ package service;
 import enums.EnumStatusCode;
 import model.Product;
 
-public interface Storage {
+
+// TODO: Добавить generic, то есть сделать интерфейс более универсальным
+public interface Storage<T> {
 
     void addProduct(Product[] products, Product product);
 
