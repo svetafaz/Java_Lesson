@@ -1,4 +1,4 @@
 package example;
 
-public class Example extends Object{
+public class Example {
 }

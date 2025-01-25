@@ -1,9 +1,6 @@
 import example.Example;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Queue;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -52,6 +49,35 @@ public class Main {
 
             System.out.println("list1: " + person);
         }
+
+        Deque<String> states = new ArrayDeque<String>();
+        // стандартное добавление элементов
+        states.add("Germany");
+        System.out.println(states);
+        states.addFirst("France"); // добавляем элемент в самое начало
+        System.out.println(states);
+        states.push("Great Britain"); // добавляем элемент в самое начало
+        System.out.println(states);
+        states.addLast("Spain"); // добавляем элемент в конец коллекции
+        System.out.println(states);
+        states.add("Italy");
+        System.out.println(states);
+        states.add("Germany");
+        System.out.println(states);
+
+        int[] array2 = {1235, 223, 3321, 9, 5123, 6, 72, 8, 9, 1};
+
+        Arrays.sort(array2);
+
+        System.out.println(Arrays.toString(array2));
+
+        Example[] exArray = {new Example(), new Example(), new Example()};
+
+        Arrays.sort(exArray);
+
+        System.out.println(Arrays.toString(exArray));
+
+
 
     }
 
