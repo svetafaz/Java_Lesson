@@ -1,3 +1,5 @@
+import java.util.function.BinaryOperator;
+
 public class Main {
 
     static int xMain = 20;
@@ -23,13 +25,16 @@ public class Main {
 
         int result = operationable.calculate(10, 23);
 
+        BinaryOperator<Integer> sum = (x,y) -> x+y;
+        result = sum.apply(10,23);
+
         System.out.println(result);
 
         Operationable<String> oper = (x, y) -> x+y;
 
         String resultString = oper.calculate("10", "23");
 
-        System.out.println(result);
+        System.out.println(resultString);
 
 
         operationable = (x, y) -> {
