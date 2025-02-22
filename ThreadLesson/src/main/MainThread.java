@@ -1,6 +1,7 @@
 package main;
 
 import threads.MyThread;
+import threads.MyThreadWhile;
 
 public class MainThread {
     public static void main(String[] args) {
@@ -39,26 +40,80 @@ public class MainThread {
         System.out.println(t + " приоритет myThread1: " +  myThread1.getPriority());
 
         myThread2.start();
-        System.out.println(t + " приоритет myThread2 " + myThread2.getPriority());
+        System.out.println(t + " приоритет myThread2: " + myThread2.getPriority());
 
 
 
-        for(int i=1; i < 6; i++)
-            new Thread(new MyThread(), "MyThread " + i).start();
+//        for(int i=1; i < 6; i++)
+//            new Thread(new MyThread(), "MyThread " + i).start();
+
+
+        MyThreadWhile myThreadWhile = new MyThreadWhile();
+        Thread myThread3 = new Thread(myThreadWhile,"MyThread");
+        myThread3.start();
+
+        try{
+            Thread.sleep(1100);
+
+            myThreadWhile.disable();
+
+            Thread.sleep(1000);
+        } catch(InterruptedException e) {
+            System.out.println("Thread has been interrupted");
+        }
+
+
+        CommonResource commonResource= new CommonResource();
+        for (int i = 1; i < 6; i++){
+
+            Thread tCount = new Thread(new CountThread(commonResource));
+            tCount.setName("Thread "+ i);
+            tCount.start();
+        }
 
 
 
         try{
             myThread1.join();
             myThread2.join();
+            myThread3.join();
         }
         catch(InterruptedException e){
 
             System.out.printf("%s has been interrupted", t.getName());
         }
 
-
         System.out.printf("%s finished... \n", Thread.currentThread().getName());
 
+
+    }
+}
+
+class CommonResource{
+
+    int x = 0;
+
+    synchronized void increment(){
+        x = 1;
+        for (int i = 1; i < 5; i++) {
+            System.out.printf("%s x: %d \n", Thread.currentThread().getName(), x);
+            x++;
+            System.out.println("x: " + x + " " + Thread.currentThread().getName());
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+            }
+        }
+    }
+}
+
+class CountThread implements Runnable{
+
+    CommonResource res;
+    CountThread(CommonResource res){
+        this.res=res;
+    }
+    public void run(){
+        res.increment();
     }
 }
