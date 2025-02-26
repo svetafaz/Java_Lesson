@@ -3,6 +3,8 @@ package main;
 import threads.MyThread;
 import threads.MyThreadWhile;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class MainThread {
     public static void main(String[] args) {
         // Создаём поток через MyThread extends Thread
@@ -64,9 +66,10 @@ public class MainThread {
 
 
         CommonResource commonResource= new CommonResource();
+        ReentrantLock locker = new ReentrantLock();
         for (int i = 1; i < 6; i++){
 
-            Thread tCount = new Thread(new CountThread(commonResource));
+            Thread tCount = new Thread(new CountThread(commonResource, locker));
             tCount.setName("Thread "+ i);
             tCount.start();
         }
@@ -93,27 +96,35 @@ class CommonResource{
 
     int x = 0;
 
-    synchronized void increment(){
-        x = 1;
-        for (int i = 1; i < 5; i++) {
-            System.out.printf("%s x: %d \n", Thread.currentThread().getName(), x);
-            x++;
-            System.out.println("x: " + x + " " + Thread.currentThread().getName());
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-            }
-        }
-    }
+//    synchronized void increment(){
+//        x = 1;
+//        for (int i = 1; i < 5; i++) {
+//            System.out.printf("%s x: %d \n", Thread.currentThread().getName(), x);
+//            x++;
+//            System.out.println("x: " + x + " " + Thread.currentThread().getName());
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//            }
+//        }
+//    }
 }
 
 class CountThread implements Runnable{
 
+    ReentrantLock locker;
     CommonResource res;
-    CountThread(CommonResource res){
+    CountThread(CommonResource res, ReentrantLock locker){
         this.res=res;
+        this.locker = locker;
     }
     public void run(){
-        res.increment();
+        locker.lock();
+        res.x=1;
+        for (int i = 1; i < 5; i++){
+            System.out.printf("%s %d \n", Thread.currentThread().getName(), res.x);
+            res.x++;
+        }
+        locker.unlock();
     }
 }
