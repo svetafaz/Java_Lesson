@@ -18,7 +18,12 @@ public class MainBuilderExample {
         User newUser = User.builder().build();
         System.out.println(newUser);
 
-        User newUser1 = User.builder().withFirstName("Dima").withLastName("Toropov").withAge(21).build();
+        User newUser1 = User.builder()
+                .withFirstName("Dima")
+                .withLastName("Toropov")
+                .withAge(21)
+                .withAge(22)
+                .build();
 
         System.out.println(newUser1);
 
