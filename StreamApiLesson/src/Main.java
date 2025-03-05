@@ -175,6 +175,52 @@ public class Main {
 
         System.out.println(map3);
 
+        System.out.println("---------------------------------------------------");
+
+        Map<String, List<Purchase>> map6 = Arrays.stream(purchases)
+                .peek(System.out::println)
+                .collect(Collectors.groupingBy(x -> x.buyer));
+
+        System.out.println(map6);
+
+        System.out.println("---------------------------------------------------");
+
+        Arrays.stream(products)
+                .flatMap(x -> Stream.of(
+                        x.name + ": Цена со скидкой - " + x.price * 0.9,
+                        x.name + ": Цена  - " + x.price,
+                        x.name + ": Цена после повышения - " + x.price * 1.2))
+                .forEach(System.out::println);
+
+        Integer[] array = Arrays.stream(products)
+                .map(x -> x.price)
+                .toArray(Integer[]::new);
+
+        System.out.println(Arrays.toString(array));
+
+        System.out.println("---------------------------------------------------");
+
+        Map<String, Integer> result = Arrays.stream(purchases)
+                .collect(Collectors.groupingBy(x -> x.buyer, Collectors.summingInt(x -> x.price)));
+
+        System.out.println(result);
+
+        System.out.println("---------------------------------------------------");
+
+
+        Map<String, Integer> results = Arrays.stream(purchases)
+                .collect(Collectors.groupingBy(x -> x.buyer,
+                        Collectors.reducing(
+                                0,
+                                x -> x.price,
+                                Integer::sum)));
+
+
+
+        System.out.println(results);
+
+
+
 
 
 
